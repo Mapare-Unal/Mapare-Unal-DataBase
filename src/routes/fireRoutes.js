@@ -127,5 +127,20 @@ router.get('/maquinas/compresoras', (req, res) => {
 var path = "activities/" + id + "/activitiesImages/" + file.name;
 var task = storageRef.child(path).put(file);*/
 //---------------------------poster_info
+router.post('/new', (req, res) => {
+    const info = {
+        id_cot: req.body.id_cot,
+        file1: req.body.file1
+    };
+    console.log(info);
+    db.collection("res")
+    .doc(info.id_cot)
+    .set({
+        id_cot: info.id_cot,
+        file1: info.file1
+    });
+    res.send('POST request to the homepage \n'+ JSON.stringify(info));
+});
+
 
 module.exports = router;
