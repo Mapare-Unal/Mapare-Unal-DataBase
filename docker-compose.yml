@@ -1,0 +1,8 @@
+  
+version: "3"
+services:
+    app:
+        container_name: "Mapare-DataBase"
+        build: .
+        ports:
+            - "3001:3001"
