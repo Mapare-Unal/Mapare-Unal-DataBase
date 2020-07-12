@@ -29,7 +29,7 @@ router.get('/maquinas', (req, res) => {
     });
 });
 
-router.get('/maquinas/:id', (req, res) => {
+router.get('/maquinas/upd/:id', (req, res) => {
     const { id } = req.params;
     db.collection('forms')
     .doc(id)
