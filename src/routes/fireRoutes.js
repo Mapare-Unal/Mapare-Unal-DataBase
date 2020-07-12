@@ -29,6 +29,16 @@ router.get('/maquinas', (req, res) => {
     });
 });
 
+router.get('/maquinas/:id', (req, res) => {
+    const { id } = req.params;
+    db.collection('forms')
+    .doc(id)
+    .update({
+        received: true
+    });
+    res.send('se cotizo '+id);
+});
+
 //-----------------------Extrusora
 router.get('/maquinas/extrusoras', (req, res) => {
     var dataf=new Array();
@@ -50,15 +60,6 @@ router.get('/maquinas/extrusoras', (req, res) => {
     });
 });
 
-router.get('/maquinas/extrusoras/:id', (req, res) => {
-    const { id } = req.params;
-    db.collection('forms')
-    .doc(id)
-    .update({
-        received: true
-    });
-    res.send('se cotizo '+id);
-});
 //-----------------------Inyectora
 router.get('/maquinas/inyectoras', (req, res) => {
     var dataf=new Array();
@@ -79,15 +80,6 @@ router.get('/maquinas/inyectoras', (req, res) => {
     });
 });
 
-router.get('/maquinas/inyectoras/:id', (req, res) => {
-    const { id } = req.params;
-    db.collection('forms')
-    .doc(id)
-    .update({
-        received: true
-    });
-    res.send('se cotizo '+id);
-});
 //---------------------Trituradora
 router.get('/maquinas/trituradoras', (req, res) => {
     var dataf=new Array();
@@ -108,15 +100,6 @@ router.get('/maquinas/trituradoras', (req, res) => {
     });
 });
 
-router.get('/maquinas/trituradoras/:id', (req, res) => {
-    const { id } = req.params;
-    db.collection('forms')
-    .doc(id)
-    .update({
-        received: true
-    });
-    res.send('se cotizo '+id);
-});
 //----------------------Compresora
 router.get('/maquinas/compresoras', (req, res) => {
     var dataf=new Array();
@@ -139,18 +122,10 @@ router.get('/maquinas/compresoras', (req, res) => {
     });
 });
 
-router.get('/maquinas/compresoras/:id', (req, res) => {
-    const { id } = req.params;
-    db.collection('forms')
-    .doc(id)
-    .update({
-        received: true
-    });
-    res.send('se cotizo '+id);
-});
-
 //----------------------postear_archivos
-
+/*var storageRef = Firebase.storage().ref();
+var path = "activities/" + id + "/activitiesImages/" + file.name;
+var task = storageRef.child(path).put(file);*/
 //---------------------------poster_info
 
 module.exports = router;
