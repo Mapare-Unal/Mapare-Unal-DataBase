@@ -3,9 +3,11 @@ const admin = require("firebase-admin");
 const serviceAccount = require("../mapareunal-firebase-adminsdk-bm11g-e5bedd4451.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://mapareunal.firebaseio.com"
+    databaseURL: "https://mapareunal.firebaseio.com",
+    storageBucket: "mapareunal.appspot.com"
 });
 //-----------------------
+const storage1 = require('../storage');
 const { Router } = require('express');
 const router = Router();
 
@@ -127,6 +129,18 @@ router.get('/maquinas/compresoras', (req, res) => {
 var path = "activities/" + id + "/activitiesImages/" + file.name;
 var task = storageRef.child(path).put(file);*/
 //---------------------------poster_info
+router.get('/maquinas/one/:id', (req, res) => {
+    const { id } = req.params;
+    db.collection('forms')
+    .doc(id)
+    .get()
+    .then(snapshot=>{
+        var aux1 = snapshot.data();
+        console.log(aux1);
+        res.send(aux1);
+    });    
+});
+
 router.post('/new', (req, res) => {
     const info = {
         id_cot: req.body.id_cot,
@@ -141,6 +155,5 @@ router.post('/new', (req, res) => {
     });
     res.send('POST request to the homepage \n'+ JSON.stringify(info));
 });
-
 
 module.exports = router;
